@@ -6,9 +6,10 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose')
 
+var Links = require('./app/models/links')
+
 var index = require('./routes/index');
 
-var Links = require('./app/models/links')
 var app = express();
 
 // view engine setup
