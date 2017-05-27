@@ -1,14 +1,8 @@
 var mongoose = require('mongoose');
 
 var LinkSchema = mongoose.Schema({
-    real: {
-        type: String,
-        required: true
-    },
-    short: {
-        type: String,
-        unique: true
-    },
+    real: String,
+    short:  String,
     created_at: {
         type: Date,
         default: new Date()

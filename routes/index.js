@@ -11,23 +11,27 @@ router.post('/create-url', function (req, res, next) {
     request(req.body.real, function (err, resp, body) {
         if (err) {
             res.sendStatus(350)
+            return
         }
         var save = function () {
-            console.log('.......req.body', req.body)
-            console.log('.......req.body type', typeof req.body)
-            models.Links.create(req.body, function () {
-                res.sendStatus(200)
-            }, function (err) {
-                console.log('.......err', err)
-                res.sendStatus(351)
+            models.Links.create({real: req.body.real, short: req.body.short}, function (err, resp) {
+                res.send(resp)
             })
         };
 
         if (!req.body.short) {
-            req.body.short = generate()
-            save()
+            generate(function (text) {
+                req.body.short = text;
+                save()
+            })
         } else {
-            save()
+            models.Links.findOne({short: req.body.short}, function (err, body) {
+                if (body) {
+                    res.sendStatus(351)
+                } else {
+                    save()
+                }
+            })
         }
     })
 });
@@ -37,20 +41,18 @@ router.get('/:url', function (req, res, next) {
 });
 
 
-function generate() {
-    var text = "",
-        possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function generate(cb) {
+    var text = '',
+        possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-    console.log('.......text', text)
-    models.Links.findOne({short: text}, function () {
-        console.log('.......1')
-        generate();
-    }, function () {
-        console.log('.......2')
-        return text
+    models.Links.findOne({short: 'text'}, function (err, obj) {
+        if (obj) {
+            generate();
+        } else {
+            cb && cb(text)
+        }
     })
-
 }
 
 module.exports = router;
