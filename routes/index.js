@@ -46,7 +46,8 @@ function generate(cb) {
         possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-    models.Links.findOne({short: 'text'}, function (err, obj) {
+
+    models.Links.findOne({short: text}, function (err, obj) {
         if (obj) {
             generate();
         } else {
