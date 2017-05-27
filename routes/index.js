@@ -37,7 +37,13 @@ router.post('/create-url', function (req, res, next) {
 });
 
 router.get('/:url', function (req, res, next) {
-    res.render('index', {title: 'Test Task'});
+    models.Links.findOne({short: req.params.url}, function (err, body) {
+        if (body) {
+            res.redirect(body.real)
+        } else {
+            res.render('error', {title: 'Test Task'});
+        }
+    })
 });
 
 
