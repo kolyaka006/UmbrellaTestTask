@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .container
+    h3 Registration account
+    .row
+      .com-md-6
+        label Input email
+          span.red-color *
+        input.form-control.email(placeholder='Input emai')
+      .com-md-6
+        label Input password
+        input.form-control.password(placeholder='Input password')
+      .com-md-6
+        label Confirm password
+        input.form-control.confirm(placeholder='Confirm password')
+      .com-md-6.m-t-10
+        button.form-control.btn.btn-default(onclick='registration()') Registration
+
+    .row.min-height-50.m-t-10.m-b-10
+      .errors-list
+        span.animation-text.red-color.col-md-12.error-comfirm Password and confirm password do not match!

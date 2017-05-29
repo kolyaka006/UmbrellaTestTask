@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container
+    h3 Login
+    .row
+      .com-md-6
+        label Email
+          span.red-color *
+        input.form-control.real-link(placeholder='Input email')
+      .com-md-6
+        label Password
+        input.form-control.short-link(placeholder='Input password')
+      .com-md-6.m-t-10
+        button.form-control.btn.btn-default.save-btn Sign in
+      .com-md-6.m-t-10
+        a(href='/registration') Sign up
+
+    .row.min-height-50.m-t-10.m-b-10
+      .errors-list
+        span.animation-text.red-color.col-md-12.error-real-link This URL does not exist
+        span.animation-text.red-color.col-md-12.error-short-link This short URL is already in use
+
