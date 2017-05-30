@@ -2,17 +2,17 @@ extends layout
 
 block content
   .container
-    h3 Login
+    h3.text-center Login
     .row
       .com-md-6
         label Email
           span.red-color *
-        input.form-control.real-link(placeholder='Input email')
+        input.form-control.login-email(placeholder='Input email')
       .com-md-6
         label Password
-        input.form-control.short-link(placeholder='Input password')
+        input.form-control.login-password(placeholder='Input password')
       .com-md-6.m-t-10
-        button.form-control.btn.btn-default.save-btn Sign in
+        button.form-control.btn.btn-default(onclick='login()') Sign in
       .com-md-6.m-t-10
         a(href='/registration') Sign up
 

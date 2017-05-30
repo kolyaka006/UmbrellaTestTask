@@ -4,21 +4,24 @@ var express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose')
+    mongoose = require('mongoose'),
+    cron = require('node-cron'),
 
-var Links = require('./app/models/links'),
+    Links = require('./app/models/links'),
     Users = require('./app/models/users'),
-    Tokens = require('./app/models/tokens');
+    Tokens = require('./app/models/tokens'),
 
-var index = require('./routes/index'),
+    config = require('./app/config'),
+    models = require('./app/db'),
+
+    index = require('./routes/index'),
     login = require('./routes/login'),
-    auth = require('./routes/auth'),
     registration = require('./routes/registration');
 
 var app = express();
 
 // view engine setup
-mongoose.connect('mongodb://localhost/testDB')
+mongoose.connect(config.database)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -32,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', login);
 app.use('/registration', registration);
-app.use('/', auth, index);
+app.use('/', index);
 
 
 // catch 404 and forward to error handler
@@ -51,6 +54,12 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+cron.schedule('30 * * * *', function () {
+    models.Links.remove({time_life: {$lt: new Date().getTime()}}, function () {
+        console.log('Old links was deleted')
+    })
 });
 
 module.exports = app;

@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/create-user', function (req, res, next) {
-    models.Users.create(req.body, function(err, resp){
+    models.Users.create(req.body, function (err, resp) {
         models.Tokens.create({user_id: resp._id}, function (err, token) {
             res.send(token)
         })

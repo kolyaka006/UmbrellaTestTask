@@ -1,17 +1,17 @@
-var express = require('express'),
-    router = express.Router(),
-    models = require('../app/db');
+var models = require('../app/db')
 
-router.get('/', function (req, res, next) {
-    var token = req.body.token || req.params.token;
-    models.Tokens.findOne({token: token}, function(err, resp){
-        if (resp) {
-            next()
-        } else (
-            res.redirect('login')
-        )
-    })
-});
-
-
-module.exports = router;
+module.exports = function (req, res, next) {
+    var token = req.headers.token;
+    if (token) {
+        models.Tokens.findOne({token: token}, function (err, resp) {
+            if (resp) {
+                req.user_id = resp.user_id;
+                next()
+            } else (
+                res.sendStatus(403)
+            )
+        })
+    } else {
+        res.sendStatus(403)
+    }
+};
