@@ -12,6 +12,8 @@ router.get('/sign-in', function (req, res, next) {
             models.Tokens.findOne({user_id: user._id}, function (err, token) {
                 res.send({token: token.token})
             })
+        } else {
+            res.sendStatus(401)
         }
     })
 });

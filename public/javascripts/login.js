@@ -12,20 +12,13 @@ function login() {
         $.get('/login/sign-in?email=' + email + '&password=' + password).then(function (resp) {
             localStorage.setItem('token', resp.token)
             window.location.replace('/')
+        }, function(err){
+            if (err.status = 401) {
+                $('.error-login').addClass('fade');
+            }
         })
     }
-
-
 }
-
-$('.email').on('focus', function () {
-    $('.email').parent().removeClass('error');
-})
-
-$('.confirm').on('focus', function () {
-    $('.confirm').parent().removeClass('error');
-    $('.error-comfirm').removeClass('fade');
-})
 
 //REGISTRATION MODULE
 function registration() {
@@ -38,7 +31,7 @@ function registration() {
     }
     if (password != confirm) {
         $('.confirm').parent().addClass('error')
-        $('.error-comfirm').addClass('fade');
+        $('.error-confirm').addClass('fade');
         return
     }
 
@@ -48,11 +41,25 @@ function registration() {
 
 }
 
-$('.email').on('focus', function () {
-    $('.email').parent().removeClass('error');
+
+$(document).ready(function(){
+    $('.email').on('focus', function () {
+        $('.email').parent().removeClass('error');
+    })
+
+    $('.confirm').on('focus', function () {
+        $('.confirm').parent().removeClass('error');
+        $('.error-confirm').removeClass('fade');
+    })
+
+    $('.login-email').on('focus', function () {
+        $('.login-email').parent().removeClass('error');
+        $('.error-login').removeClass('fade');
+    })
+
+    $('.login-password').on('focus', function () {
+        $('.login-password').parent().removeClass('error');
+        $('.error-login').removeClass('fade');
+    })
 })
 
-$('.confirm').on('focus', function () {
-    $('.confirm').parent().removeClass('error');
-    $('.error-comfirm').removeClass('fade');
-})
