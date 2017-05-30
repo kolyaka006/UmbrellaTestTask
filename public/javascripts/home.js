@@ -71,18 +71,9 @@ $(document).ready(function () {
     })
 
     function addLinks(data) {
-        var child = '<div class='
-        m - t - 10
-        m - b - 10
-        animation - text
-        fade
-        '> ' +
-        '<div>Real link: <a href='
-        ' + data.real + '
-        '>' + data.real + '</a></div>' +
-        '<div>Short link: <a href='
-        ' + location.origin + ' / ' + data.short + '
-        '>' + location.origin + '/' + data.short + '</a></div>' +
+        var child = '<div class="m-t-10 m-b-10 animation-text fade">' +
+        '<div>Real link: <a href="' + data.real + '">' + data.real + '</a></div>' +
+        '<div>Short link: <a href="' + location.origin + '/' + data.short + '">' + location.origin + '/' + data.short + '</a></div>' +
         '<div>Count:' + data.count || 0 + '</a></div>' +
         '</div>'
         $('.list-links').append(child)
