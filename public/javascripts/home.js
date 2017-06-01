@@ -1,7 +1,8 @@
+// checking token in local storage
 if (!localStorage.getItem('token'))
     window.location.replace('/login')
 $(document).ready(function () {
-    //GET USERS LINKS
+    //getting user links
     $.ajax({
         url: '/get-all-links-user',
         type: 'get',
@@ -21,11 +22,29 @@ $(document).ready(function () {
         }
     });
 
+// hiding error messages
+    $('.real-link').on('focus', function () {
+        $('.real-link').parent().removeClass('error');
+        $('.error-real-link').removeClass('fade');
+    });
 
-    $('.save-btn').on('click', function () {
-        var real = $('.real-link').val();
-        var short = $('.short-link').val();
-        if (real) {
+    $('.short-link').on('focus', function () {
+        $('.short-link').parent().removeClass('error');
+        $('.error-short-link').removeClass('fade');
+        $('.error-short-invalid').removeClass('fade');
+    })
+})
+
+// function for getting pair original and short link
+function getShortLink() {
+    // getting value from input
+    var real = $('.real-link').val();
+    var short = $('.short-link').val();
+    // regex for only number and letters
+    var regex = /^[0-9a-zA-Z]+$/;
+
+    if (real) {
+        if (short.match(regex)) {
             $.notify('Send data', 'info');
             $.ajax({
                 url: '/create-url',
@@ -55,27 +74,21 @@ $(document).ready(function () {
                 }
             });
         } else {
-            $('.real-link').parent().addClass('error');
-
+            $('.short-link').parent().addClass('error');
+            $('.error-short-invalid').addClass('fade')
         }
-    });
+    } else {
+        $('.real-link').parent().addClass('error');
 
-    $('.real-link').on('focus', function () {
-        $('.real-link').parent().removeClass('error');
-        $('.error-real-link').removeClass('fade');
-    });
+    }
+}
 
-    $('.short-link').on('focus', function () {
-        $('.short-link').parent().removeClass('error');
-        $('.error-short-link').removeClass('fade');
-    })
-
-    function addLinks(data) {
-        var child = '<div class="m-t-10 m-b-10 animation-text fade">' +
+// Add DOM element with pair original and short link
+function addLinks(data) {
+    var child = '<div class="m-t-10 m-b-10 animation-text fade">' +
         '<div>Real link: <a href="' + data.real + '">' + data.real + '</a></div>' +
         '<div>Short link: <a href="' + location.origin + '/' + data.short + '">' + location.origin + '/' + data.short + '</a></div>' +
         '<div>Count:' + data.count || 0 + '</a></div>' +
         '</div>'
-        $('.list-links').append(child)
-    }
-})
+    $('.list-links').append(child)
+}
