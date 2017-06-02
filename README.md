@@ -4,7 +4,6 @@
 
 
  Run application:
-   ***
     npm start
 
  Specification API:
