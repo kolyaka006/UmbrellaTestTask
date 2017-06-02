@@ -92,3 +92,9 @@ function addLinks(data) {
         '</div>'
     $('.list-links').append(child)
 }
+
+// log out
+function logout() {
+    localStorage.clear();
+    window.location.replace('/login')
+}
