@@ -8,8 +8,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/create-user', function (req, res, next) {
+    // hash password
     req.body.password = md5(req.body.password);
+    //create user
     models.Users.create(req.body, function (err, resp) {
+        // create token and send
         models.Tokens.create({user_id: resp._id}, function (err, token) {
             res.send(token)
         })

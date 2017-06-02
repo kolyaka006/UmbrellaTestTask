@@ -94,7 +94,7 @@ function addLinks(data) {
 }
 
 // log out
-function logout() {
+function logOut() {
     localStorage.clear();
     window.location.replace('/login')
 }

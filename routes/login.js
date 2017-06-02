@@ -8,8 +8,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/sign-in', function (req, res, next) {
+    // finding user by email and password
     models.Users.findOne({email: req.query.email, password: md5(req.query.password)}, function (err, user) {
+        // if user founded
         if (user) {
+            // finding him token and sending
             models.Tokens.findOne({user_id: user._id}, function (err, token) {
                 res.send({token: token.token})
             })
