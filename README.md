@@ -1,17 +1,17 @@
  Description:
- Application write on javascript. To frontend use 'Jquery' library. Templates write on 'jade'. To backend used 'Nodejs' + 'MongoDB'.
- To work with 'Nodejs' used 'Express' library. To work with 'MongoDB'  used 'Mongoose' library. Also used 'node-cron' library for delete old links.
-
+ -----------------------------------
+ Application is written in `Javascript`. `Jquery` library is used for frontend. Templates are written in `Jade`. `Nodejs + MongoDB` are used for backend. `Express` library is used for work with `Nodejs`. `Mongoose` library is used for work with `MongoDB`. Also to delete old links `node-cron` library is used.
 
  Run application:
-   ***
-    npm start
-
+-----------------------------------
+ ***npm start***
+    
  Specification API:
-
-POST '/registration/create-user' -- POST request with params {email: String, password: String} for create new user on DB.
-GET '/login/sign-in' -- GET request with params {email: String, password: String} for get user's token.
-GET '/get-all-links-user' -- GET request with token in header, in response array with user links.
-POST '/create-url' -- POST request with params {real: String, short: String} and token in header for create new original and short url pair in DB.
-    If short link not specified her will created.
-GET '/:url' -- GET request for find short url pair in DB, increase count link and redirect on original url.
+-----------------------------------
+Method         | Description
+----------------|----------------------
+POST '/registration/create-user'     | POST request with parameters {email: String, password: String} for create new user in DB.
+GET '/login/sign-in'      | GET request with parameters {email: String, password: String} to get user's token.
+GET '/get-all-links-user'   | GET request with token in header; in response will be array with user links.
+POST '/create-url'  | POST request with parameters {real: String, short: String} and token in header to create new original and short url pair in DB. If short link was not found it will be created. 
+GET '/:url'     | GET request to find pair link by short link in DB, increase of pair link count and redirect to original url.
