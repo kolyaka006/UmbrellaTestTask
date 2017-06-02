@@ -10,7 +10,7 @@
 -----------------------------------
 Method         | Description
 ----------------|----------------------
-POST '/registration/create-user'     | POST request with parameters {email: String, password: String} for create new user on DB.
+POST '/registration/create-user'     | POST request with parameters {email: String, password: String} for create new user in DB.
 GET '/login/sign-in'      | GET request with parameters {email: String, password: String} to get user's token.
 GET '/get-all-links-user'   | GET request with token in header; in response will be array with user links.
 POST '/create-url'  | POST request with parameters {real: String, short: String} and token in header to create new original and short url pair in DB. If short link was not found it will be created. 
