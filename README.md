@@ -11,8 +11,8 @@
 -----------------------------------
 Method         | Description
 ----------------|----------------------
-POST '/registration/create-user'     | POST request with params {email: String, password: String} for create new user on DB.
-GET '/login/sign-in'      | GET request with params {email: String, password: String} for get user's token.
+POST '/registration/create-user'     | POST request with parameters {email: String, password: String} for create new user on DB.
+GET '/login/sign-in'      | GET request with parameters {email: String, password: String} for get user's token.
 GET '/get-all-links-user'   | GET request with token in header, in response array with user links.
-POST '/create-url'  | POST request with params {real: String, short: String} and token in header for create new original and short url pair in DB. If short link not specified her will created.
-GET '/:url'     | GET request for find short url pair in DB, increase count link and redirect on original url.
+POST '/create-url'  | POST request with parameters {real: String, short: String} and token in header for create new original and short url pair in DB. If short link not specified her will created.
+GET '/:url'     | GET request for find pair link by short link in DB, increase count pair links and redirect on original url.
