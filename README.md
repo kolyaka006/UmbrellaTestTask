@@ -1,7 +1,6 @@
  Description:
  -----------------------------------
- Application write on `Javascript`. To frontend use `Jquery` library. Templates write on `Jade`. To backend used `Nodejs + MongoDB`.
- To work with `Nodejs` used `Express` library. To work with `MongoDB`  used `Mongoose` library. Also used `node-cron` library for delete old links.
+ Application is written in `Javascript`. `Jquery` library is used for frontend. Templates are written in `Jade`. `Nodejs + MongoDB` are used for backend. `Express` library is used for work with `Nodejs`. For work with `MongoDB` `Mongoose` library is used. Also to delete old links `node-cron` library is used.
 
  Run application:
 -----------------------------------
