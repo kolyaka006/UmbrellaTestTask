@@ -1,11 +1,12 @@
+ -----------------------------------
  Description:
  Application write on javascript. To frontend use 'Jquery' library. Templates write on 'jade'. To backend used 'Nodejs' + 'MongoDB'.
  To work with 'Nodejs' used 'Express' library. To work with 'MongoDB'  used 'Mongoose' library. Also used 'node-cron' library for delete old links.
 
-
+-----------------------------------
  Run application:
     npm start
-
+-----------------------------------
  Specification API:
 
 POST '/registration/create-user' -- POST request with params {email: String, password: String} for create new user on DB.
