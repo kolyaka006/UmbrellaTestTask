@@ -9,7 +9,7 @@
     
  Specification API:
 -----------------------------------
-Method         | Desctoption
+Method         | Description
 ----------------|----------------------
 POST '/registration/create-user'     | POST request with params {email: String, password: String} for create new user on DB.
 GET '/login/sign-in'      | GET request with params {email: String, password: String} for get user's token.
