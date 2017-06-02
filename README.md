@@ -5,7 +5,7 @@
 
  Run application:
  ***
-    ***npm start***
+    npm start
 
  Specification API:
 
